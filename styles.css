@@ -48,7 +48,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-outfit);
   line-height: 1.5;
-  overflow-x: hidden;
+  overflow: hidden;
   background-image: 
     radial-gradient(at 10% 20%, rgba(26, 76, 50, 0.1) 0px, transparent 50%),
     radial-gradient(at 90% 80%, rgba(168, 36, 36, 0.1) 0px, transparent 50%);
@@ -59,7 +59,8 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Header */
@@ -193,7 +194,7 @@ body {
   display: grid;
   grid-template-columns: 460px 1fr;
   flex: 1;
-  height: calc(100vh - 96px); /* Subtract header height */
+  min-height: 0;
   overflow: hidden;
 }
 
