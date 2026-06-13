@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conscious Media - Premium YouTube Thumbnail Branding & Production Workflow System integrated with Google Drive and Google Sheets.">
+  <title>Conscious Media | Production Workflow System & Creator</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700;900&family=Montserrat:wght@400;700;900&family=Outfit:wght@400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Syne:wght@800&display=swap" rel="stylesheet">
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Google API SDKs -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+  
+  <!-- html2canvas for visual PNG exporting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <!-- App Shell -->
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-main-row">
+        <div class="header-logo">
+          <span class="logo-red">CONSCIOUS</span>
+          <span class="logo-gold">MEDIA</span>
+          <span class="logo-badge">WORKFLOW HUB</span>
+        </div>
+        
+        <!-- Google Connection Status Badge -->
+        <div class="google-connection-widget">
+          <div class="connection-status">
+            <span class="status-indicator offline" id="conn-indicator"></span>
+            <span class="status-text" id="conn-text">Workspace Offline</span>
+          </div>
+          <button class="btn-workspace-connect" id="btn-google-auth">Connect Google Workspace</button>
+        </div>
+      </div>
+      <p class="header-tagline">Cloud-Integrated Production Dashboard • Reggae Culture • Roots History • Documentary Creator</p>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace-grid">
+      
+      <!-- Left Sidebar: Brand System & Controls -->
+      <section class="sidebar-panel">
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="brand-rules-tab">Rules</button>
+          <button class="tab-btn" data-tab="templates-tab">Templates</button>
+          <button class="tab-btn" data-tab="editor-tab">Editor</button>
+          <button class="tab-btn" data-tab="copywriter-tab">AI Copywriter</button>
+          <button class="tab-btn" data-tab="setup-tab">G-Connect Setup</button>
+        </div>
+
+        <div class="tab-content-container">
+          
+          <!-- TAB 1: BRAND RULES -->
+          <div class="tab-content active" id="brand-rules-tab">
+            <div class="rules-section">
+              <h3>Branding System & Core Guidelines</h3>
+              <p class="section-intro">Ensure your thumbnails remain high-CTR, mobile-optimized, and on-brand for Netflix-style roots reggae documentaries.</p>
+              
+              <!-- Color Swatches -->
+              <div class="guideline-card">
+                <h4>1. Premium Reggae Palette</h4>
+                <p class="card-desc">Curated colors with maximum visual harmony. Click to copy codes.</p>
+                <div class="color-palette-grid">
+                  <div class="color-swatch-card" style="--swatch-color: #1A4C32;" onclick="navigator.clipboard.writeText('#1A4C32'); alert('Copied Roots Green!')">
+                    <div class="swatch-color"></div>
+                    <span class="swatch-name">Roots Green</span>
+                    <span class="swatch-hex">#1A4C32</span>
+                  </div>
+                  <div class="color-swatch-card" style="--swatch-color: #E6B325;" onclick="navigator.clipboard.writeText('#E6B325'); alert('Copied Imperial Gold!')">
+                    <div class="swatch-color"></div>
+                    <span class="swatch-name">Imperial Gold</span>
+                    <span class="swatch-hex">#E6B325</span>
+                  </div>
+                  <div class="color-swatch-card" style="--swatch-color: #A82424;" onclick="navigator.clipboard.writeText('#A82424'); alert('Copied Livity Red!')">
+                    <div class="swatch-color"></div>
+                    <span class="swatch-name">Livity Red</span>
+                    <span class="swatch-hex">#A82424</span>
+                  </div>
+                  <div class="color-swatch-card" style="--swatch-color: #0B0C10;" onclick="navigator.clipboard.writeText('#0B0C10'); alert('Copied Midnight Black!')">
+                    <div class="swatch-color"></div>
+                    <span class="swatch-name">Midnight Black</span>
+                    <span class="swatch-hex">#0B0C10</span>
+                  </div>
+                  <div class="color-swatch-card" style="--swatch-color: #FFFFFF;" onclick="navigator.clipboard.writeText('#FFFFFF'); alert('Copied Off-White!')">
+                    <div class="swatch-color"></div>
+                    <span class="swatch-name">Pure Off-White</span>
+                    <span class="swatch-hex">#FFFFFF</span>
+                  </div>
+                  <div class="color-swatch-card" style="--swatch-color: #2ECC71;" onclick="navigator.clipboard.writeText('#2ECC71'); alert('Copied Accent Mint!')">
+                    <div class="swatch-color"></div>
+                    <span class="swatch-name">Accent Mint</span>
+                    <span class="swatch-hex">#2ECC71</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Typography rules -->
+              <div class="guideline-card">
+                <h4>2. Title & Font Hierarchy</h4>
+                <ul class="guideline-list">
+                  <li><strong>Maximum 3-5 Words:</strong> Keep headline statements extremely brief for mobile readers.</li>
+                  <li><strong>Headline Font:</strong> Use thick, tall fonts like <em>Bebas Neue</em> or <em>Syne</em>.</li>
+                  <li><strong>Editorial Accents:</strong> Pair with premium serifs like <em>Cinzel</em> for high-end credibility.</li>
+                  <li><strong>Dynamic Tilt:</strong> A -3deg title tilt breaks grid monotony.</li>
+                </ul>
+              </div>
+
+              <!-- Artist placement rules -->
+              <div class="guideline-card">
+                <h4>3. Artist Cutout & Face Sizing</h4>
+                <ul class="guideline-list">
+                  <li><strong>Rule of Thirds:</strong> Position faces on left or right vertical lines, aligning eyes near the upper third grid.</li>
+                  <li><strong>Face Sizing:</strong> Let the face occupy at least 30-40% of the vertical space to maximize emotional connection.</li>
+                  <li><strong>Backlight Glows:</strong> Add gold or red glows to isolate the portrait from dark backgrounds.</li>
+                </ul>
+              </div>
+
+              <!-- Mobile Check -->
+              <div class="guideline-card warn-card">
+                <h4>⚠️ Timestamp Danger Zone</h4>
+                <p class="card-desc">Always keep critical text and face profiles out of the bottom right corner (the YouTube duration tag covers this area).</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- TAB 2: TEMPLATES -->
+          <div class="tab-content" id="templates-tab">
+            <div class="templates-section">
+              <h3>Select Production Template</h3>
+              <p class="section-intro">Presets designed to match Conscious Media content tracks.</p>
+              
+              <div class="templates-grid">
+                
+                <!-- March Birthday (Vintage Poster) -->
+                <div class="template-card active" id="tpl-march-birthday">
+                  <div class="template-thumb birthday-thumb">
+                    <span class="tpl-badge">Birthday</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Reggae Birthdays</h4>
+                    <p>Vintage poster look, distressed halftone borders, massive background typography.</p>
+                  </div>
+                </div>
+
+                <!-- Netflix Roots Doc -->
+                <div class="template-card" id="tpl-roots-doc">
+                  <div class="template-thumb doc-thumb">
+                    <span class="tpl-badge">Docu-Style</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Artist Documentaries</h4>
+                    <p>Cinematic side-lit profile, elegant serif subtitles, heavy vignette, roots green gradients.</p>
+                  </div>
+                </div>
+
+                <!-- Modern Dancehall -->
+                <div class="template-card" id="tpl-dancehall">
+                  <div class="template-thumb dancehall-thumb">
+                    <span class="tpl-badge">Dancehall</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Dancehall Spotlight</h4>
+                    <p>Vibrant green-red neon overlays, aggressive text angles, black drop shadows.</p>
+                  </div>
+                </div>
+
+                <!-- Top 10 lists -->
+                <div class="template-card" id="tpl-top10">
+                  <div class="template-thumb top10-thumb">
+                    <span class="tpl-badge">Top 10</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Top 10 Lists</h4>
+                    <p>High contrast gold numbers, bold heavy text, maximum punch for roots archives.</p>
+                  </div>
+                </div>
+
+                <!-- Reggae History -->
+                <div class="template-card" id="tpl-history">
+                  <div class="template-thumb history-thumb">
+                    <span class="tpl-badge">History</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Reggae History Archive</h4>
+                    <p>Sepia and warm black-and-white tones, premium magazine framing, historical texture layers.</p>
+                  </div>
+                </div>
+
+                <!-- Commentary / Commentary -->
+                <div class="template-card" id="tpl-commentary">
+                  <div class="template-thumb commentary-thumb">
+                    <span class="tpl-badge">Commentary</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Music Commentary</h4>
+                    <p>Bold editorial title slashes, off-white headers, high contrast face silhouettes.</p>
+                  </div>
+                </div>
+
+                <!-- Radio Promotion -->
+                <div class="template-card" id="tpl-promo">
+                  <div class="template-thumb promo-thumb">
+                    <span class="tpl-badge">Radio Promo</span>
+                  </div>
+                  <div class="template-info">
+                    <h4>Radio Show Promos</h4>
+                    <p>Golden light leaks, modern metadata banners, clean corporate-reggae styling.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: CUSTOMIZE EDITOR -->
+          <div class="tab-content" id="editor-tab">
+            <div class="editor-section">
+              <h3>Thumbnail Layout & Metadata</h3>
+              
+              <!-- VIDEO METADATA (GOOGLE SHEETS INTEGRATION FIELDS) -->
+              <div class="control-group metadata-group">
+                <h4>1. Video Project Details</h4>
+                
+                <div class="input-wrapper">
+                  <label for="input-video-title">Database Video Title</label>
+                  <input type="text" id="input-video-title" value="Reggae Legends Born in March" placeholder="Enter video title for tracking database...">
+                </div>
+
+                <div class="control-grid-2">
+                  <div class="input-wrapper">
+                    <label for="select-month">Target Month</label>
+                    <select id="select-month">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March" selected>March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                  </div>
+
+                  <div class="input-wrapper">
+                    <label for="select-status">Status</label>
+                    <select id="select-status">
+                      <option value="Draft" selected>Draft</option>
+                      <option value="Approved">Approved</option>
+                      <option value="Uploaded">Uploaded</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="control-grid-2">
+                  <div class="input-wrapper">
+                    <label for="input-artists">Artist Names</label>
+                    <input type="text" id="input-artists" value="Bob Marley, Dennis Brown" placeholder="e.g. Marley, Dennis Brown">
+                  </div>
+                  <div class="input-wrapper">
+                    <label for="select-category">Category</label>
+                    <select id="select-category">
+                      <option value="Reggae Birthday" selected>Reggae Birthday</option>
+                      <option value="Dancehall Artists">Dancehall Artists</option>
+                      <option value="Top 10 Lists">Top 10 Lists</option>
+                      <option value="Reggae History">Reggae History</option>
+                      <option value="Artist Documentaries">Artist Documentaries</option>
+                      <option value="Music Commentary">Music Commentary</option>
+                      <option value="Radio Show Promo">Radio Show Promo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="input-wrapper">
+                  <label for="input-youtube-link">YouTube Video URL (Optional)</label>
+                  <input type="text" id="input-youtube-link" value="" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+
+                <div class="input-wrapper">
+                  <label for="input-notes">Notes</label>
+                  <input type="text" id="input-notes" value="Special March Legends tribute episode" placeholder="Additional production notes...">
+                </div>
+              </div>
+
+              <!-- GRAPHIC EDITOR: TEXT -->
+              <div class="control-group">
+                <div class="group-header">
+                  <span>Headline Typography</span>
+                  <span class="word-counter" id="text-count">0 / 5 Words</span>
+                </div>
+                
+                <div class="input-wrapper">
+                  <input type="text" id="input-headline" value="MARCH LEGENDS" placeholder="Type thumbnail text...">
+                  <small class="helper-text error" id="text-limit-warning" style="display:none;">⚠️ Keep copy to 3-5 words for higher mobile CTR!</small>
+                </div>
+
+                <div class="control-grid-2">
+                  <div class="input-wrapper">
+                    <label for="select-font-pair">Typography Pair</label>
+                    <select id="select-font-pair">
+                      <option value="bebas-cinzel">Bebas + Cinzel (Netflix)</option>
+                      <option value="syne-montserrat">Syne + Montserrat (Modern)</option>
+                      <option value="bebas-bebas">Bebas Neue Solo (Heavy)</option>
+                      <option value="playfair-mont">Playfair Serif (Vintage)</option>
+                    </select>
+                  </div>
+
+                  <div class="input-wrapper">
+                    <label for="select-text-color">Color Theme</label>
+                    <select id="select-text-color">
+                      <option value="gold-white">Imperial Gold & White</option>
+                      <option value="green-gold">Roots Green & Gold</option>
+                      <option value="red-gold">Livity Red & Gold</option>
+                      <option value="white-red">White & Livity Red</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="slider-wrapper">
+                  <label for="slider-text-size">Text Size (<span id="val-text-size">105</span>px)</label>
+                  <input type="range" id="slider-text-size" min="60" max="140" value="105">
+                </div>
+
+                <div class="slider-wrapper">
+                  <label for="slider-text-tilt">Title Tilt (<span id="val-text-tilt">-4</span>°)</label>
+                  <input type="range" id="slider-text-tilt" min="-15" max="15" value="-4">
+                </div>
+
+                <div class="slider-wrapper">
+                  <label for="slider-text-y">Vertical Position (<span id="val-text-y">52</span>%)</label>
+                  <input type="range" id="slider-text-y" min="10" max="90" value="52">
+                </div>
+              </div>
+
+              <!-- GRAPHIC EDITOR: BACKGROUND -->
+              <div class="control-group">
+                <h4>Backdrop & Textures</h4>
+                
+                <div class="input-wrapper">
+                  <label for="select-bg-style">Base Backdrop</label>
+                  <select id="select-bg-style">
+                    <option value="vintage-texture">Vintage Poster Texture (Distressed)</option>
+                    <option value="roots-gradient">Imperial Green-Black Gradient</option>
+                    <option value="crimson-dark">Crimson-Charcoal Gradient</option>
+                    <option value="dancehall-street">Midnight Black (Clean)</option>
+                  </select>
+                </div>
+
+                <div class="control-grid-2">
+                  <div class="slider-wrapper">
+                    <label for="slider-bg-contrast">Contrast (<span id="val-bg-contrast">120</span>%)</label>
+                    <input type="range" id="slider-bg-contrast" min="50" max="150" value="120">
+                  </div>
+                  <div class="slider-wrapper">
+                    <label for="slider-vignette">Vignette (<span id="val-vignette">60</span>%)</label>
+                    <input type="range" id="slider-vignette" min="0" max="100" value="60">
+                  </div>
+                </div>
+
+                <div class="checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-overlay-noise" checked>
+                    <span>Distressed Poster Grain</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="chk-overlay-lightleak" checked>
+                    <span>Golden Side-Light Glow</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- GRAPHIC EDITOR: UPLOAD IMAGES -->
+              <div class="control-group upload-group">
+                <h4>📁 Upload Your Images</h4>
+
+                <!-- ARTIST CUTOUT UPLOAD -->
+                <label class="upload-zone-label">Artist / Subject Photo</label>
+                <div class="drop-zone" id="drop-zone-artist" role="button" tabindex="0" aria-label="Upload artist image">
+                  <input type="file" id="input-artist-file" accept="image/*" class="drop-zone__input">
+                  <div class="drop-zone__prompt" id="artist-prompt">
+                    <div class="drop-zone__icon">🎤</div>
+                    <p class="drop-zone__text">Drag &amp; drop your artist photo here</p>
+                    <p class="drop-zone__subtext">or click to browse — PNG / JPG / WEBP</p>
+                    <span class="drop-zone__btn">Choose File</span>
+                  </div>
+                  <div class="drop-zone__preview" id="artist-preview" style="display:none;">
+                    <img id="artist-preview-img" src="" alt="Artist preview">
+                    <div class="drop-zone__preview-info">
+                      <span id="artist-preview-name" class="preview-filename"></span>
+                      <button class="preview-remove-btn" id="btn-remove-artist">✕ Remove</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- BACKGROUND IMAGE UPLOAD -->
+                <label class="upload-zone-label" style="margin-top: 1rem;">Custom Background Image</label>
+                <div class="drop-zone drop-zone--bg" id="drop-zone-bg" role="button" tabindex="0" aria-label="Upload background image">
+                  <input type="file" id="input-bg-file" accept="image/*" class="drop-zone__input">
+                  <div class="drop-zone__prompt" id="bg-prompt">
+                    <div class="drop-zone__icon">🖼️</div>
+                    <p class="drop-zone__text">Drag &amp; drop background image here</p>
+                    <p class="drop-zone__subtext">or click to browse — PNG / JPG / WEBP</p>
+                    <span class="drop-zone__btn">Choose File</span>
+                  </div>
+                  <div class="drop-zone__preview" id="bg-preview" style="display:none;">
+                    <img id="bg-preview-img" src="" alt="Background preview">
+                    <div class="drop-zone__preview-info">
+                      <span id="bg-preview-name" class="preview-filename"></span>
+                      <button class="preview-remove-btn" id="btn-remove-bg">✕ Remove</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- preset artist selector (kept for preset switching) -->
+                <div class="input-wrapper" style="margin-top:1rem;">
+                  <label for="select-artist-image">Or use a Preset Artist</label>
+                  <select id="select-artist-image">
+                    <option value="reggae-legend">Roots Reggae Legend (Cinematic)</option>
+                    <option value="reggae-silhouette">Reggae Artist (Silhouette)</option>
+                    <option value="dancehall-neon">Dancehall Star (Neon Overlay)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- GRAPHIC EDITOR: ARTIST CUTOUT SETTINGS -->
+              <div class="control-group">
+                <h4>Artist Cutout Settings</h4>
+
+                <div class="slider-wrapper">
+                  <label for="slider-artist-scale">Artist Scale (<span id="val-artist-scale">1.15</span>x)</label>
+                  <input type="range" id="slider-artist-scale" min="0.5" max="2.0" step="0.05" value="1.15">
+                </div>
+
+                <div class="control-grid-2">
+                  <div class="slider-wrapper">
+                    <label for="slider-artist-x">Horiz (X: <span id="val-artist-x">70</span>%)</label>
+                    <input type="range" id="slider-artist-x" min="10" max="100" value="70">
+                  </div>
+                  <div class="slider-wrapper">
+                    <label for="slider-artist-y">Vert (Y: <span id="val-artist-y">55</span>%)</label>
+                    <input type="range" id="slider-artist-y" min="10" max="90" value="55">
+                  </div>
+                </div>
+
+                <div class="input-wrapper">
+                  <label for="select-artist-filter">Artist Color Treatment</label>
+                  <select id="select-artist-filter">
+                    <option value="warm-cinematic">Warm Cinematic (High Contrast)</option>
+                    <option value="roots-duotone">Roots Green-Gold Duotone</option>
+                    <option value="vintage-bw">Vintage Black & White</option>
+                    <option value="none">Original Colors</option>
+                  </select>
+                </div>
+
+                <div class="control-grid-2">
+                  <div class="slider-wrapper">
+                    <label for="slider-glow-intensity">Backlight Glow (<span id="val-glow-intensity">35</span>px)</label>
+                    <input type="range" id="slider-glow-intensity" min="0" max="80" value="35">
+                  </div>
+                  <div class="input-wrapper">
+                    <label for="select-glow-color">Glow Color</label>
+                    <select id="select-glow-color">
+                      <option value="gold">Imperial Gold</option>
+                      <option value="green">Accent Mint Green</option>
+                      <option value="red">Livity Red</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MARCH SPECIFIC SETTINGS -->
+              <div class="control-group march-extra-group" id="march-extra-controls">
+                <div class="accent-badge-small">Birthday Exclusive</div>
+                <h4>March Birthday Graphic</h4>
+                <div class="input-wrapper">
+                  <label for="input-bg-text">March Big Background Text</label>
+                  <input type="text" id="input-bg-text" value="MARCH" placeholder="e.g. MARCH">
+                </div>
+                <div class="slider-wrapper">
+                  <label for="slider-bg-text-opacity">Bg Text Opacity (<span id="val-bg-text-opacity">0.2</span>)</label>
+                  <input type="range" id="slider-bg-text-opacity" min="0.05" max="0.5" step="0.05" value="0.2">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- TAB 4: AI COPYWRITER -->
+          <div class="tab-content" id="copywriter-tab">
+            <div class="copywriter-section">
+              <h3>AI Creative Copywriting Assistant</h3>
+              <p class="section-intro">Generates mobile-optimized 3-5 word thumbnails and authentic roots reggae social media captions based on your video settings.</p>
+              
+              <button class="btn-primary" id="btn-generate-copy" style="width: 100%; margin-bottom: 1.5rem;">Generate Brand Copy ideas</button>
+
+              <!-- Headline Ideas -->
+              <div class="guideline-card">
+                <h4>Mobile Headline Ideas (3-5 Words)</h4>
+                <p class="card-desc">Click any copy statement to apply it directly to the editor headline.</p>
+                <div class="ai-copy-output" id="ai-headline-output">
+                  <div class="copy-block" data-headline="MARCH LEGENDS">MARCH LEGENDS</div>
+                  <div class="copy-block" data-headline="ROOTS OF REGGAE">ROOTS OF REGGAE</div>
+                  <div class="copy-block" data-headline="KING OF DANCEHALL">KING OF DANCEHALL</div>
+                </div>
+              </div>
+
+              <!-- Social Media Captions -->
+              <div class="guideline-card">
+                <h4>Social Media Captions</h4>
+                <p class="card-desc">Formated with authentic reggae/cultural descriptions and channel hashtags.</p>
+                <div class="ai-captions-container" id="ai-caption-output">
+                  
+                  <div class="caption-item-card">
+                    <p class="caption-item-text" id="cap-text-1">🔥 Celebrating the icons of reggae born in March! From Dennis Brown's soulful roots to Bob Marley's spiritual livity, we explore the history and anthems that shaped Caribbean culture. #ConsciousMedia #ReggaeHistory #RootsCulture</p>
+                    <button class="btn-copy-clipboard" onclick="copyCaption('cap-text-1')">Copy Caption</button>
+                  </div>
+                  
+                  <div class="caption-item-card">
+                    <p class="caption-item-text" id="cap-text-2">⚡ The sounds of the diaspora! Join us in this reggae commentary as we dissect the classic records and legendary birthday artists who paved the way. Drop your favorite March legend track below! #ReggaeMusic #DancehallHistory #BobMarley</p>
+                    <button class="btn-copy-clipboard" onclick="copyCaption('cap-text-2')">Copy Caption</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: GOOGLE SETUP -->
+          <div class="tab-content" id="setup-tab">
+            <div class="setup-section">
+              <h3>Google Workspace Configuration</h3>
+              <p class="section-intro">This app connects directly from your browser to Google Drive and Sheets. No servers or passwords required.</p>
+              
+              <div class="guideline-card">
+                <h4>G-Workspace Auth Instructions</h4>
+                <ol class="guideline-list" style="padding-left: 0.5rem;">
+                  <li>Go to <a href="https://console.cloud.google.com/" target="_blank" style="color: var(--brand-gold);">Google Cloud Console</a>.</li>
+                  <li>Create a project, enable the <strong>Google Drive API</strong> and <strong>Google Sheets API</strong>.</li>
+                  <li>Configure the OAuth consent screen (add your email as test user).</li>
+                  <li>Create an <strong>OAuth Client ID</strong> (Web Application type).</li>
+                  <li>Add <code>http://localhost:3005</code> to Authorized JavaScript Origins.</li>
+                  <li>Paste the Client ID below and save.</li>
+                </ol>
+              </div>
+
+              <div class="control-group">
+                <div class="input-wrapper">
+                  <label for="input-client-id">OAuth Client ID</label>
+                  <input type="text" id="input-client-id" placeholder="12345678-abcde.apps.googleusercontent.com">
+                </div>
+                <button class="btn-primary" id="btn-save-credentials" style="width:100%; margin-bottom: 0.5rem;">Save Credentials Locally</button>
+                <button class="btn-secondary" id="btn-clear-credentials" style="width:100%;">Reset Settings</button>
+              </div>
+
+              <div class="guideline-card warn-card" id="connection-debug-box" style="display:none;">
+                <h4 style="color: var(--brand-red-light);">Google API Status Logs</h4>
+                <p id="connection-logs" style="font-size: 0.75rem; font-family: monospace; white-space: pre-wrap; color: var(--text-muted);"></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Right Column: Canvas Preview, Tools & YouTube Simulator -->
+      <section class="preview-panel">
+        
+        <!-- Live Editor Canvas -->
+        <div class="canvas-card">
+          <div class="canvas-header-actions">
+            <h4>Live Design Canvas</h4>
+            <div class="guide-switches">
+              <label class="checkbox-label" title="Show Rule of Thirds grid to position faces and text properly">
+                <input type="checkbox" id="chk-grid-guide">
+                <span>Rule of Thirds Grid</span>
+              </label>
+              <label class="checkbox-label" title="Simulates the YouTube timeline duration badge at the bottom-right">
+                <input type="checkbox" id="chk-timestamp-guide" checked>
+                <span>Mock Timestamp</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Thumbnail Render Node -->
+          <div class="thumbnail-wrapper" id="capture-node">
+            <div class="thumbnail-canvas" id="canvas-node">
+              
+              <!-- Background layer -->
+              <div class="layer bg-layer" id="canvas-bg"></div>
+              
+              <!-- Background Text (Vintage poster style) -->
+              <div class="layer bg-text-layer" id="canvas-bg-text">MARCH</div>
+              
+              <!-- Text Overlay Noise / Distressed textures -->
+              <div class="layer texture-overlay" id="canvas-texture"></div>
+
+              <!-- Ambient Glow lights -->
+              <div class="layer lightleak-overlay" id="canvas-lightleak"></div>
+
+              <!-- Artist Cutout Layer -->
+              <div class="layer artist-layer-wrapper" id="canvas-artist-wrapper">
+                <img src="assets/reggae_legend.png" class="artist-img" id="canvas-artist-img" alt="Artist Profile">
+                <div class="artist-glow" id="canvas-artist-glow"></div>
+              </div>
+
+              <!-- Vignette Overlay -->
+              <div class="layer vignette-overlay" id="canvas-vignette"></div>
+
+              <!-- Grid Overlays -->
+              <div class="non-exporting thirds-grid" id="thirds-grid-overlay">
+                <div class="grid-line v1"></div>
+                <div class="grid-line v2"></div>
+                <div class="grid-line h1"></div>
+                <div class="grid-line h2"></div>
+              </div>
+
+              <!-- Simulated YouTube Timestamp -->
+              <div class="non-exporting timestamp-badge" id="timestamp-badge-overlay">
+                <span>15:42</span>
+              </div>
+
+              <!-- Text Content overlay -->
+              <div class="layer text-container" id="canvas-text-container">
+                <h2 class="title-primary" id="canvas-title-1">MARCH</h2>
+                <h3 class="title-secondary" id="canvas-title-2">LEGENDS</h3>
+              </div>
+
+              <!-- Premium Magazine Border overlay (Optional template layer) -->
+              <div class="layer border-overlay" id="canvas-border-overlay"></div>
+
+              <!-- Channel Logo / Watermark -->
+              <div class="layer channel-watermark" id="canvas-watermark">
+                CONSCIOUS MEDIA
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Canvas Info and Core Actions -->
+          <div class="canvas-actions">
+            <div class="action-info">
+              <span class="info-badge">1280 × 720</span>
+              <p>Designs render at 1080p full HD aspect ratio.</p>
+            </div>
+            
+            <div class="action-buttons">
+              <button class="btn-secondary" id="btn-reset">Reset</button>
+              <button class="btn-secondary" id="btn-export-local">Local PNG</button>
+              <button class="btn-primary" id="btn-save-workflow" disabled>
+                💾 Cloud Save & Sync Tracker
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- YouTube Mobile Feed Simulator -->
+        <div class="simulator-card">
+          <h4>Mobile Feed Readability Simulator</h4>
+          <p class="simulator-intro">YouTube mobile traffic dominates clicks. Verify text sizes and contrast at small dimensions.</p>
+          
+          <div class="feed-sim-grid">
+            
+            <!-- Mobile Screen Mockup -->
+            <div class="mobile-phone-chassis">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <div class="phone-header">
+                  <span>YouTube</span>
+                  <div class="header-icons">🔍 👤</div>
+                </div>
+                <div class="phone-feed">
+                  
+                  <!-- Video Card 1 (Current Custom Thumbnail) -->
+                  <div class="feed-video-card">
+                    <div class="sim-thumb-container">
+                      <div class="sim-thumb-img-wrapper">
+                        <!-- Cloned live canvas preview goes here -->
+                        <div class="sim-thumb-placeholder" id="sim-live-thumb"></div>
+                      </div>
+                      <span class="sim-timestamp">15:42</span>
+                    </div>
+                    <div class="video-meta">
+                      <div class="channel-avatar"></div>
+                      <div class="video-text">
+                        <h4 class="video-title" id="sim-video-title">Reggae Legends Born in March: Roots & Culture Documentary</h4>
+                        <p class="channel-name">Conscious Media • 12K views • 2 hours ago</p>
+                      </div>
+                      <span class="video-options">⋮</span>
+                    </div>
+                  </div>
+
+                  <!-- Video Card 2 (Competitor) -->
+                  <div class="feed-video-card competitor-card">
+                    <div class="sim-thumb-container competitor-thumb">
+                      <span class="sim-timestamp">10:15</span>
+                    </div>
+                    <div class="video-meta">
+                      <div class="channel-avatar competitor-avatar"></div>
+                      <div class="video-text">
+                        <h4 class="video-title">Top Roots Reggae Anthems Mix (Vintage Classics)</h4>
+                        <p class="channel-name">Reggae Vibes TV • 142K views • 3 days ago</p>
+                      </div>
+                      <span class="video-options">⋮</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Desktop Sidebar Search result simulation -->
+            <div class="desktop-search-mockup">
+              <h5>Desktop Sidebar (Up Next Feed)</h5>
+              <div class="sidebar-item">
+                <div class="sidebar-thumb-container">
+                  <!-- Cloned live preview -->
+                  <div class="sidebar-thumb-placeholder" id="sim-sidebar-thumb"></div>
+                  <span class="sim-timestamp">15:42</span>
+                </div>
+                <div class="sidebar-meta">
+                  <h6 class="sidebar-title">Reggae Legends Born in March: Roots & Culture Documentary</h6>
+                  <p class="channel-name">Conscious Media</p>
+                  <p class="video-stats">12K views • 2 hours ago</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Google Sheets Content Tracker Database Table -->
+        <div class="simulator-card db-tracker-card">
+          <div class="db-card-header">
+            <h4>Google Sheets Content Database Tracker</h4>
+            <button class="btn-secondary" id="btn-refresh-db" disabled>🔄 Sync Database Rows</button>
+          </div>
+          <p class="simulator-intro" style="margin-bottom: 0.8rem;">Live content calendar records synced directly from your designated Google Spreadsheet.</p>
+          
+          <div class="table-container">
+            <table class="db-records-table">
+              <thead>
+                <tr>
+                  <th>Video Title</th>
+                  <th>Month</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Artist Names</th>
+                  <th>File Link</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="db-table-body">
+                <!-- Sync status placeholder -->
+                <tr>
+                  <td colspan="7" class="table-empty-state">
+                    Please click "Connect Google Workspace" to authenticate and load tracking records.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 Conscious Media. All Rights Reserved. Private Cloud-Integrated Content Production System.</p>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
